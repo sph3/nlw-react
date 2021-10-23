@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/authContext';
 import styles from './styles.module.scss';
 
 export const LoginBox = () => {
-  const { signInUrl, user } = useContext(AuthContext);
+  const { signInUrl } = useContext(AuthContext);
   return (
     <div className={styles.loginBoxWrapper}>
       <strong>Entre e compartilhe sua mensagem</strong>
