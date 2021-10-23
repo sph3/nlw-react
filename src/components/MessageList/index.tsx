@@ -14,13 +14,25 @@ type Message = {
   };
 };
 
+const messagesQueue: Message[] = [];
+
 const socket = io('http://localhost:3000');
-socket.on('new_message', (newMessage) => {
-  console.log(newMessage);
+socket.on('new_message', (newMessage: Message) => {
+  messagesQueue.push(newMessage);
 });
 
 export const MessageList = () => {
   const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (messagesQueue.length > 1) {
+        setMessages((prevMessages) =>
+          [messagesQueue[0], prevMessages[0], prevMessages[1]].filter(Boolean)
+        );
+      }
+    }, 3000);
+  }, []);
 
   useEffect(() => {
     api.get<Message[]>('/messages/last3').then((res) => {
