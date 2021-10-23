@@ -1,5 +1,3 @@
-export const SendMessaForm = () => {
-  return (
-    <h1>SendMessaForm</h1>
-  );
+export const SendMessageForm = () => {
+  return <h1>Send message form</h1>;
 };
