@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 export const SendMessageForm = () => {
   const { user, signOut } = useContext(AuthContext);
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState('');
 
   const setMessageHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
