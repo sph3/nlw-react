@@ -2,7 +2,9 @@ import { VscGithubInverted } from 'react-icons/vsc';
 import styles from './styles.module.scss';
 
 export const LoginBox = () => {
-  const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=http://localhost:4500`;
+  const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${
+    import.meta.env.VITE_CLIENT_ID
+  }&redirect_uri=http://localhost:4500`;
 
   return (
     <div className={styles.loginBoxWrapper}>
