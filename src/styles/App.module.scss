@@ -12,10 +12,10 @@
 .contentSignedIn::before {
   content: '';
   height: 100vh;
-  width: 400px;
+  width: 320px;
   background: url('../assets/background.svg') no-repeat;
   background-size: cover;
   position: absolute;
-  right: -81px;
+  right: -82px;
   top: 0;
 }

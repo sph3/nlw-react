@@ -30,7 +30,7 @@ export const SendMessageForm = () => {
 
       <header className={styles.userInfo}>
         <div className={styles.userImg}>
-          <img src={user?.avatar_url} alt={`${user?.name} foto`} />
+          <img src={''} alt={`${user?.name} foto`} />
         </div>
         <strong className={styles.userName}>{user?.name}</strong>
         <span className={styles.userGithub}>
