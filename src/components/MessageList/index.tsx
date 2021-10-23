@@ -13,7 +13,7 @@ type Message = {
 };
 
 export const MessageList = () => {
-  const [messages, setMessages] = useState();
+  const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
     api.get('messages/last3').then((res) => {
