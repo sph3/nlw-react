@@ -16,8 +16,8 @@ export const MessageList = () => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    api.get('messages/last3').then((res) => {
-      console.log(res.data);
+    api.get<Message[]>('messages/last3').then((res) => {
+      setMessages(res.data);
     });
   }, []);
 
