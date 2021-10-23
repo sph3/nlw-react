@@ -38,7 +38,7 @@ export const AuthProvider: FC = (props) => {
     const { token, user } = res.data;
     localStorage.setItem('dowhile:token', token);
 
-    console.log(user);
+    setUser(user);
   };
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export const AuthProvider: FC = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signInUrl }}>
+    <AuthContext.Provider value={{ signInUrl, user }}>
       {props.children}
     </AuthContext.Provider>
   );
