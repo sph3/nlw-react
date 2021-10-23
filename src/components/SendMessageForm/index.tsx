@@ -19,6 +19,7 @@ export const SendMessageForm = () => {
     }
 
     await api.post('messages', { message });
+    setMessage('');
   };
 
   return (
