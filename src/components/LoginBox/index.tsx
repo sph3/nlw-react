@@ -12,7 +12,8 @@ export const LoginBox = () => {
     const hasGithubCode = url.includes('?code=');
 
     if (hasGithubCode) {
-      const [, githubCode] = url.split('?code=');
+      const [urlWIthoutCode, githubCode] = url.split('?code=');
+      window.history.pushState({}, '', urlWIthoutCode);
     }
   }, []);
 
