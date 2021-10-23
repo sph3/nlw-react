@@ -12,10 +12,10 @@ type AuthContextData = {
   signInUrl: string;
 };
 
-const AuthContext = createContext(null);
+const AuthContext = createContext({} as AuthContextData);
 
 export const AuthProvider: FC = (props) => {
   return (
-    <AuthContext.Provider value={null}>{props.children}</AuthContext.Provider>
+    <AuthContext.Provider value={{}}>{props.children}</AuthContext.Provider>
   );
 };
