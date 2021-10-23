@@ -47,8 +47,8 @@ export const AuthProvider: FC = (props) => {
     if (token) {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-      api.get('profile').then((res) => {
-        console.log(res.data);
+      api.get<User>('profile').then((res) => {
+        setUser(res.data);
       });
     }
   }, []);
