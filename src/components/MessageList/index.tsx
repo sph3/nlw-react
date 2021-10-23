@@ -30,6 +30,8 @@ export const MessageList = () => {
         setMessages((prevMessages) =>
           [messagesQueue[0], prevMessages[0], prevMessages[1]].filter(Boolean)
         );
+
+        messagesQueue.shift();
       }
     }, 3000);
   }, []);
