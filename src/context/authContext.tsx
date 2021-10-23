@@ -23,7 +23,7 @@ type AuthResponse = {
   };
 };
 
-const AuthContext = createContext({} as AuthContextData);
+export const AuthContext = createContext({} as AuthContextData);
 
 export const AuthProvider: FC = (props) => {
   const [user, setUser] = useState<User | null>(null);
