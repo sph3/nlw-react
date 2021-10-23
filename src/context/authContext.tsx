@@ -1,4 +1,5 @@
-import { createContext, FC } from 'react';
+import { createContext, FC, useEffect, useState } from 'react';
+import { api } from '../services/API';
 
 type User = {
   id: string;
@@ -12,10 +13,48 @@ type AuthContextData = {
   signInUrl: string;
 };
 
+type AuthResponse = {
+  token: string;
+  user: {
+    id: string;
+    avatar_url: string;
+    name: string;
+    login: string;
+  };
+};
+
 const AuthContext = createContext({} as AuthContextData);
 
 export const AuthProvider: FC = (props) => {
+  const [user, setUser] = useState<User | null>(null);
+
+  const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${
+    import.meta.env.VITE_CLIENT_ID
+  }&redirect_uri=http://localhost:4500`;
+
+  const signIn = async (githubCode: string) => {
+    const res = await api.post<AuthResponse>('auth', { code: githubCode });
+
+    const { token, user } = res.data;
+    localStorage.setItem('dowhile:token', token);
+
+    console.log(user);
+  };
+
+  useEffect(() => {
+    const url = window.location.href;
+    const hasGithubCode = url.includes('?code=');
+
+    if (hasGithubCode) {
+      const [urlWIthoutCode, githubCode] = url.split('?code=');
+      window.history.pushState({}, '', urlWIthoutCode);
+      signIn(githubCode);
+    }
+  }, []);
+
   return (
-    <AuthContext.Provider value={{}}>{props.children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signInUrl }}>
+      {props.children}
+    </AuthContext.Provider>
   );
 };
