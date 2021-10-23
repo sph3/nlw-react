@@ -1,10 +1,15 @@
-import { useContext } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
 import { AuthContext } from '../../context/authContext';
 import styles from './styles.module.scss';
 
 export const SendMessageForm = () => {
   const { user, signOut } = useContext(AuthContext);
+  const [message, setMessage] = useState<string>('');
+
+  const setMessageHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(event.target.value);
+  };
 
   return (
     <div className={styles.sendMessageFormWrapper}>
@@ -26,9 +31,11 @@ export const SendMessageForm = () => {
       <form className={styles.sendMessageForm}>
         <label htmlFor="message">Mensagem</label>
         <textarea
+          onChange={setMessageHandler}
           name="message"
           id="message"
           placeholder="Qual a sua expectativa para o evento?"
+          value={message}
         />
         <button type="submit">Enviar mensagem</button>
       </form>
