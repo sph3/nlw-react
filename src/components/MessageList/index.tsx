@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+
 import { api } from '../../services/API';
 import styles from './styles.module.scss';
 import logoImg from '../../assets/logo.svg';
-import { useEffect, useState } from 'react';
 
 type Message = {
   id: string;
@@ -11,6 +13,11 @@ type Message = {
     avatar_url: string;
   };
 };
+
+const socket = io('http://localhost:3000');
+socket.on('new_message', (newMessage) => {
+  console.log(newMessage);
+});
 
 export const MessageList = () => {
   const [messages, setMessages] = useState<Message[]>([]);
