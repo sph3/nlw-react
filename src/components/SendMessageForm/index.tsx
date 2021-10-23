@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
 import { AuthContext } from '../../context/authContext';
+import { api } from '../../services/API';
 import styles from './styles.module.scss';
 
 export const SendMessageForm = () => {
@@ -9,6 +10,15 @@ export const SendMessageForm = () => {
 
   const setMessageHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
+  };
+
+  const sendMessageHandler = async (event: FormEvent) => {
+    event.preventDefault();
+    if (!message.trim()) {
+      return;
+    }
+
+    await api.post('messages', { message });
   };
 
   return (
@@ -28,7 +38,7 @@ export const SendMessageForm = () => {
         </span>
       </header>
 
-      <form className={styles.sendMessageForm}>
+      <form onSubmit={sendMessageHandler} className={styles.sendMessageForm}>
         <label htmlFor="message">Mensagem</label>
         <textarea
           onChange={setMessageHandler}
