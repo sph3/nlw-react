@@ -11,6 +11,7 @@ type User = {
 type AuthContextData = {
   user: User | null;
   signInUrl: string;
+  signOut: () => void;
 };
 
 type AuthResponse = {
@@ -70,7 +71,7 @@ export const AuthProvider: FC = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signInUrl, user }}>
+    <AuthContext.Provider value={{ signInUrl, user, signOut }}>
       {props.children}
     </AuthContext.Provider>
   );
