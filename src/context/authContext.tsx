@@ -41,6 +41,11 @@ export const AuthProvider: FC = (props) => {
     setUser(user);
   };
 
+  const signOut = () => {
+    setUser(null);
+    localStorage.removeItem('dowhile:token');
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('dowhile:token');
 
