@@ -25,7 +25,7 @@ export const MessageList = () => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    setInterval(() => {
       if (messagesQueue.length > 1) {
         setMessages((prevMessages) =>
           [messagesQueue[0], prevMessages[0], prevMessages[1]].filter(Boolean)
