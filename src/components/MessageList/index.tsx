@@ -1,4 +1,4 @@
-import { api } from '../../services/api';
+import { api } from '../../services/API';
 import styles from './styles.module.scss';
 import logoImg from '../../assets/logo.svg';
 import { useEffect, useState } from 'react';
