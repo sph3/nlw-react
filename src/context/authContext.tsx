@@ -38,6 +38,7 @@ export const AuthProvider: FC = (props) => {
 
     const { token, user } = res.data;
     localStorage.setItem('dowhile:token', token);
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
 
     setUser(user);
   };
