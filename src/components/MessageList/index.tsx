@@ -1,3 +1,7 @@
+import styles from './styles.module.scss';
+
 export const MessageList = () => {
-  return <h1>Message List</h1>;
+  return <div className={styles.messageListWrapper}>
+    
+  </div>;
 };
