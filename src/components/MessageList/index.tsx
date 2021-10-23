@@ -1,9 +1,20 @@
 import { api } from '../../services/api';
 import styles from './styles.module.scss';
 import logoImg from '../../assets/logo.svg';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+type Message = {
+  id: string;
+  text: string;
+  user: {
+    name: string;
+    avatar_url: string;
+  };
+};
 
 export const MessageList = () => {
+  const [messages, setMessages] = useState();
+
   useEffect(() => {
     api.get('messages/last3').then((res) => {
       console.log(res.data);
